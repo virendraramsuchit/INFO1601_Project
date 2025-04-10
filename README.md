@@ -1,1 +1,1 @@
-# INFO1601_GroupProject
+# INFO1601_Project
