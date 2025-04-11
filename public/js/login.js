@@ -22,7 +22,7 @@ import { firebaseConfig } from './firebaseConfig.js';
         alert("Logged In");
 
         //sends users to a new page after account was created
-        window.location.href = "";
+        window.location.href = "mainpage.html";
         // ..
 
     })
