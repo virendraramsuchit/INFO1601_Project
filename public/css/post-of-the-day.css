@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 
@@ -12,33 +11,18 @@ body {
     height: 100vh;
     overflow-x: hidden;
     background-color: #000000;
+    z-index: 1;
 }
 
 .user-info p {
     font-size: 15px;
     color: rgb(4, 4, 4);
     font-weight: bold;
-    text-transform: uppercase;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-}
-
-
-.navbar-content {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-
-
-
-.title {
-    font-size: 25px;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
+    flex-direction: row;
     text-transform: uppercase;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 
@@ -53,18 +37,9 @@ body {
     text-transform: uppercase;
 }
 
-.navbar {
-    background-color: #ffffff;
-    color: rgb(4, 4, 4);
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    position: relative; /* Important for dropdown positioning */
-    overflow: visible;  /* Ensures dropdown is not cut off */
+.user-info img {
+    height: 60px;
+    width: 60px;
 }
 
 .nav-dropdown {
@@ -72,17 +47,6 @@ body {
     display: inline-block;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%; /* Positions dropdown below button */
-    right: 0;  /* Aligns dropdown correctly */
-    background-color: white;
-    min-width: 150px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    z-index: 1000; /* Ensures dropdown appears on top */
-}
 
 .nav-dropdown:hover .dropdown-content {
     display: block;
@@ -95,6 +59,7 @@ body {
     padding: 10px;
     text-decoration: none;
     display: block;
+    z-index: 11;
 }
 
 
@@ -103,13 +68,14 @@ body {
 }
 
 .dropdown-content a.active {
-    background-color: #000000; /* Blue Highlight */
+    background-color: #000000; 
     color: white;
     font-weight: bold;
 }
 
+
 .content {
-    margin-left: 12vw;
+    margin-left: 7vw;
     width: 85vw;
     display: flex;
     justify-content: center;
@@ -117,6 +83,7 @@ body {
 }
 
 .post-content {
+    z-index: 1;
     display: flex;
     align-items: center;
     background-color: white;
@@ -125,6 +92,7 @@ body {
     padding: 15px;
     max-width: 85vw;
     height: 90vh;
+    position: relative;
 }
 
 .post-image {
@@ -173,13 +141,49 @@ body {
     background-color: #ddd;
 }
 
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 15px;
+    background-color: #fefdfd;
+    color: rgb(3, 3, 3);
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
 .date {
     color: slategray;
 }
 
-aside img {
-    height: 90px;
-    width: 90px;
-    margin-left: 15px;
-    position: absolute;
+.dropdown-content {
+    display: none;
+    position: fixed; 
+    top: auto;        
+    right: 20px;      
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 9999;     
 }
+
