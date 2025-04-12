@@ -15,7 +15,7 @@ async function getThisWeekInSpace (){
     const endDate = today.toISOString().split('T')[0];
 
     const startDate = new Date();
-    startDate.setDate(today.getDate() - 7);
+    startDate.setDate(today.getDate() - 6);
     const startDateStr = startDate.toISOString().split('T')[0];
 
     let response = await fetch(`https://api.nasa.gov/planetary/apod?&api_key=${api_key}&start_date=${startDateStr}&end_date=${endDate}`);
@@ -37,29 +37,26 @@ function makePost(info){
 
         html += `
         
-        <div class="post-content">
-          
-            <div class="post-body">
-                <h1>${rec.title}</h1>
-                <p>${rec.explanation}</p>
+        <div class="content">
+            <div class="post-content">
                 <img class="post-image" src="${rec.hdurl}" alt="Post Image">
-                </div>
-    
-                <div class="post-footer">
-                    <div class="reaction-buttons">
-                        <!--onclick activates firebase-->
-                        <button onclick="">&#x1F44D; Like</button>
-                        <button onclick="">&#x1F4A1; Comment</button>
-                        <button  onclick="">&#x1F516; Save</button>
+                <div class="post-body">
+                    <h1>${rec.title}</h1>
+                    <p>${rec.explanation}</p>
+                    <div class="post-footer">
+                        <div class="reaction-buttons">
+                            <button onclick="">&#x1F44D; Like</button>
+                            <button onclick="">&#x1F4A1; Comment</button>
+                            <button onclick="">&#x1F516; Save</button>
+                        </div>
+                        <div class="reaction-buttons">
+                            <button onclick="">View Comments</button>
+                        </div>
                     </div>
-
-                    <div class="reaction-buttons">
-                        <button  onclick="" >View Comments</button>
-                        <!--onclick would trigger js and popup modal with comments-->
-                    </div>
                 </div>
+            </div>
         </div>
-
+        <br>
         `;
     }
 
