@@ -6,6 +6,7 @@
     <title>Post of the Day</title>
     <link rel="stylesheet" href="./css/podd-landscape.css">
     <link rel="stylesheet" href="./css/comments-section.css">
+    <link rel="stylesheet" href="./css/pop-up-modal.css">
     <script type ="module" src="./js/post-of-the-day.js"></script>
 </head>
 <body>
@@ -16,7 +17,7 @@
             <div class="navbar-left">
                 <div class="user-info">
                     <img src="./images/app-logo.png" alt="App Logo" >
-                    <p>Virendra</p>
+                    <p id="user-email">Virendra</p>
                 </div>
             </div>
             <p class="title">Post of the Day</p>
@@ -27,9 +28,9 @@
         <div class="nav-dropdown">
             <button class="dropbtn">☰ Menu</button>
             <div class="dropdown-content">
-                <a href="mainpage.html" >This week in space &#x1F30C;</a>
+                <a href="mainpage-landscape.html" >This week in space &#x1F30C;</a>
                 <a href="make-ur-day-better.html">Make your day better &#x1F604;</a>
-                <a href="post-of-the-day.html" class="active">Post of the day &#x1F31A;</a>
+                <a href="podd-landscape.html" class="active">Post of the day &#x1F31A;</a>
                 <a href="#">Can you see the stars? &#x1F52D;</a>
                 <a href="date-to-pic.html">Date for a picture &#x1F4F8;  </a>
                 <a href="#">Profile info &#x1F464;</a>
@@ -65,19 +66,17 @@
     <br>
 
 
-    <div class="comments-section">
-        <h2>Comments</h2>
-      
-        <form id="comment-form">
-          <textarea id="comment-input" placeholder="Share your thoughts..."></textarea>
-          <button type="submit">Post Comment</button>
-        </form>
-      
-        <div id="comments-container">
-          <!-- Comments will be dynamically inserted here -->
+    <div id="myModal" class="modal">
+
+        <div class="modal-content">
+
+          <span class="close">&times;</span>
+          <h3>Comments</h3>
+          <div id="comments-container"></div>
+
         </div>
 
-    </div>
+      </div>
     
 </body>
 </html>
