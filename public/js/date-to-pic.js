@@ -54,7 +54,7 @@ async function showDataForMonth(){
 
    await getDataByMonth();
 
-   let content = document.querySelector(".content");
+   let results = document.querySelector("#results");
 
    let html = '';
 
@@ -86,19 +86,20 @@ async function showDataForMonth(){
         `;
    }
 
-   content.innerHTML = html;
+   results.innerHTML = html;
 
 }
 
 function goBack(){
 
-    let content = document.querySelector(".content");
+    let results = document.querySelector("#results");
 
     let html = '';
  
          html += `
              
-        <div class="post-content">
+        <div class="content-form">
+        <div class="post-content-form">
 
             <form>
               <label for="year">Enter Year (e.g. 2020):</label>
@@ -116,11 +117,12 @@ function goBack(){
                 <p>Some ideas: <p>
                 <p>1. Your birth month<br> 2. A memorable month to you or someone special<br>3. Just pick one for the fun of it</p>
                 </div>
+            </div>
         </div>
  
          `;
  
-    content.innerHTML = html;
+    results.innerHTML = html;
 
 }
 
