@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post of the Day</title>
     <link rel="stylesheet" href="./css/podd-landscape.css">
+    <link rel="stylesheet" href="./css/comments-section.css">
     <script type ="module" src="./js/post-of-the-day.js"></script>
 </head>
 <body>
@@ -62,6 +63,21 @@
         </div>
 
     <br>
+
+
+    <div class="comments-section">
+        <h2>Comments</h2>
+      
+        <form id="comment-form">
+          <textarea id="comment-input" placeholder="Share your thoughts..."></textarea>
+          <button type="submit">Post Comment</button>
+        </form>
+      
+        <div id="comments-container">
+          <!-- Comments will be dynamically inserted here -->
+        </div>
+
+    </div>
     
 </body>
 </html>

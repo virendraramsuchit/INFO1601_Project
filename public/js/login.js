@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
 import { firebaseConfig } from './firebaseConfig.js';
 
@@ -14,6 +14,7 @@ import { firebaseConfig } from './firebaseConfig.js';
     const email = document.getElementById('email-login').value;
     const password = document.getElementById('password-login').value;
 
+
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
 
@@ -22,16 +23,28 @@ import { firebaseConfig } from './firebaseConfig.js';
         alert("Logged In");
 
         //sends users to a new page after account was created
-        window.location.href = "mainpage.html";
-        // ..
+        window.location.href = "mainpage-landscape.html";
+        
 
     })
     .catch((error) => {
+
         const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage)
-        // ..
+
+        if (errorCode === "auth/invalid-credential") {
+          alert("Email or password is incorrect.");
+        } 
+        else if (errorCode === "auth/invalid-email") {
+          alert("Invalid email format.");
+        } 
+        else if (errorCode === "auth/too-many-requests") {
+          alert("Too many login attempts. Try again later.");
+        } 
+        else {
+          alert("Login failed: " + error.message);
+        }
+        
     });
 
 
-  })
+})

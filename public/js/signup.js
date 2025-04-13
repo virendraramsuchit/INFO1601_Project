@@ -19,18 +19,18 @@ const app = initializeApp(firebaseConfig);
     .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        alert("Account Created");
-
-        //sends users to a new page after account was created
-        window.location.href = "";
-        // ..
+        alert("Account Created... Please login with same credentials");
 
     })
     .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage)
-        // ..
+
+        if(errorCode === "auth/email-already-in-use"){
+
+          alert("This email is already registered. Please login instead.");
+          
+        }
+        
     });
 
 
