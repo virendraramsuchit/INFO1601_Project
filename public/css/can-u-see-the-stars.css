@@ -10,7 +10,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
-    background-color: #000000;
+    background-image: url(https://cdn.wallpapersafari.com/32/99/FTcskA.jpg);
     z-index: 1;
 }
 
@@ -182,3 +182,30 @@ body {
     border-radius: 5px;
     z-index: 9999;     
 }
+
+.start-up h1 {
+    margin-top: 100px;
+    margin-left: 40px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+}
+
+.nightsky-btn {
+    color: white;
+    background-color: rgb(196, 33, 33);
+    height: 50px;
+    width: 300px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 40%;
+    margin-top: 30px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.nightsky-btn:hover {
+    background-color: rgb(135, 23, 23) ;
+  }
+
