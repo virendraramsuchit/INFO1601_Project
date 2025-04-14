@@ -80,7 +80,9 @@ function makePost(info) {
 
     result.innerHTML = html;
 
-    attachCommentListeners(); // attach event handlers
+    //event handlers
+    attachCommentListeners();
+    savePostListeners(); 
 }
 
 function attachCommentListeners() {
@@ -122,48 +124,11 @@ function attachCommentListeners() {
     });
 }
 
-// function makePost(info){
-
-//     let result = document.querySelector('#results');
-
-//     let html = '';
-
-//     for(let rec of info){
-
-//         html += `
-        
-//         <div class="content">
-//             <div class="post-content">
-//                 <img class="post-image" src="${rec.hdurl}" alt="Post Image">
-//                 <div class="post-body">
-//                     <h1>${rec.title}</h1>
-//                     <p>${rec.explanation}</p>
-//                     <div class="post-footer">
-//                         <div class="reaction-buttons">
-//                             <button onclick="">&#x1F44D; Like</button>
-//                             <button onclick="">&#x1F4A1; Comment</button>
-//                             <button onclick="">&#x1F516; Save</button>
-//                         </div>
-//                         <div class="reaction-buttons">
-//                             <button onclick="">View Comments</button>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//         <br>
-//         `;
-//     }
-
-//     result.innerHTML = html;
-
-// }
-
 async function getCommentsForDate(date) {
     const q = query(
         collection(db, "comments"),
         where("apodDate", "==", date),
-        
+
     );
 
     try {
@@ -190,6 +155,44 @@ async function getCommentsForDate(date) {
     } catch (error) {
         console.error("Error getting comments:", error);
     }
+}
+
+function savePostListeners() {
+    document.querySelectorAll(".save-btn").forEach(button => {
+        button.addEventListener("click", async () => {
+            const user = auth.currentUser;
+
+            if (!user) {
+                alert("Please log in to save posts.");
+                return;
+            }
+
+            const post = button.closest(".post-content");
+            const title = post.querySelector("h1").textContent;
+            const imageurl = post.querySelector(".post-image").src;
+
+            // Try to get date from data attribute or fallback to parsing text
+            const dateAttr = button.closest(".reaction-buttons").querySelector(".comment-btn")?.getAttribute("data-date");
+            const dateText = post.querySelector(".date")?.textContent || post.querySelector("p").textContent.match(/\d{4}-\d{2}-\d{2}/)?.[0];
+            const date = dateAttr || dateText;
+
+            try {
+                await addDoc(collection(db, "savedPosts"), {
+                    uid: user.uid,
+                    email: user.email,
+                    date: date,
+                    title: title,
+                    imageurl: imageurl,
+                    timestamp: new Date()
+                });
+
+                alert("Post saved!");
+            } catch (error) {
+                console.error("Error saving post:", error);
+                alert("Failed to save post.");
+            }
+        });
+    });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

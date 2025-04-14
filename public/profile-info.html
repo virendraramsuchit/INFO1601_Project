@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile info</title>
     <link rel = "stylesheet" href = "./css/profile.info.css">
-    <script type ="module" src=""></script>
+    <script type ="module" src="./js/profile-info.js"></script>
 
 
 </head>
@@ -20,7 +20,7 @@
                 <div class="navbar-left">
                     <div class="user-info">
                         <img src="./images/app-logo.png" alt="App Logo" >
-                        <p>Virendra</p>
+                        <p id="user-email">Virendra</p>
                     </div>
                 </div>
                 <p class="title">Profile info</p>
@@ -31,7 +31,7 @@
                 <div class="dropdown-content">
                     <a href="mainpage-landscape.html">This week in space &#x1F30C;</a>
                     <a href="make-ur-day-better.html">Make your day better &#x1F604;</a>
-                    <a href="post-of-the-day.html">Post of the day &#x1F31A;</a>
+                    <a href="podd-landscape.html">Post of the day &#x1F31A;</a>
                     <a href="can-u-see-the-stars.html" >Can you see the stars? &#x1F52D;</a>
                     <a href="date-to-pic.html">Date for a picture &#x1F4F8;  </a>
                     <a href="profile-info.html" class="active">Profile info &#x1F464;</a>
@@ -43,11 +43,19 @@
         <div class="stars"></div>
 
   <div class="profile-container">
+    <div id = "saved-posts-container" class="saved-posts-container" >
+
     <img src="./images/app-logo.png" alt="App Logo" class="app-logo">
-    <div class="username">@Virendra-ramsuchit</div>
-    <button class="action-btn" onclick="">&#x1F516; Saved Items</button>
+    <div id = "display_name" class="username">@Virendra-ramsuchit</div>
+    <button class="action-btn" onclick="displaySavedPosts()">View Saved Posts</button>
+
+    </div>
   </div>
 
+  <!-- <div id="saved-posts-container" class="saved-posts-container">
+    Saved posts will be inserted here
+
+  </div> -->
       
         </body>
 </html>

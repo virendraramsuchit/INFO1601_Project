@@ -77,7 +77,7 @@ function makeCard(info){
                       <div class="reaction-buttons">
                           <button onclick="">&#x1F44D; Like</button>
                           <button id ="comment-btn">&#x1F4A1; Comment</button>
-                          <button onclick="">&#x1F516; Save</button>
+                          <button id="save-btn">&#x1F516; Save</button>
                       </div>
                       <div class="reaction-buttons">
                           <button id="viewBtn" onclick="">View Comments</button>
@@ -95,6 +95,8 @@ function makeCard(info){
     modal.style.display = "block";
     getCommentsForDate(random_date); 
   });
+
+  document.getElementById("save-btn").addEventListener("click", saveRandomAPOD);
 
 }
 
@@ -139,6 +141,37 @@ async function addComment() {
 
   }
 
+}
+
+async function saveRandomAPOD() {
+  const user = auth.currentUser;
+
+  if (!user) {
+      alert("Please log in to save posts.");
+      return;
+  }
+
+  try {
+      // Grab post data from DOM
+      const post = document.querySelector(".post-content");
+      const title = post.querySelector("h1").textContent;
+      const imageurl = post.querySelector(".post-image").src;
+      const date = post.querySelector(".date").textContent;
+
+      await addDoc(collection(db, "savedPosts"), {
+          uid: user.uid,
+          email: user.email,
+          date: date,
+          title: title,
+          imageurl: imageurl,
+          timestamp: new Date()
+      });
+
+      alert("Post saved!");
+  } catch (error) {
+      console.error("Error saving post:", error);
+      alert("Failed to save post.");
+  }
 }
 
 const modal = document.getElementById("myModal");

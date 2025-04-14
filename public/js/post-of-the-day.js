@@ -61,7 +61,7 @@ function makeCard(info){
                         <div class="reaction-buttons">
                             <button onclick="">&#x1F44D; Like</button>
                             <button id ="comment-btn">&#x1F4A1; Comment</button>
-                            <button onclick="">&#x1F516; Save</button>
+                            <button id="save-btn" data-date="${info.date}" data-title="${info.title}" data-url="${info.hdurl}">&#x1F516; Save</button>
                         </div>
                         <div class="reaction-buttons">
                             <button id="viewBtn" onclick="">View Comments</button>
@@ -73,7 +73,8 @@ function makeCard(info){
     `;
 
     result.innerHTML = html;
-    document.getElementById("comment-btn").addEventListener("click", addComment)
+    document.getElementById("comment-btn").addEventListener("click", addComment);
+    document.getElementById("save-btn").addEventListener("click", savePost);
 }
 
 makeCard(data);
@@ -109,6 +110,36 @@ async function addComment() {
 
   }
 
+}
+
+async function savePost() {
+    const user = auth.currentUser;
+    if (!user) {
+        alert("Please log in to save posts.");
+        return;
+    }
+
+    const saveBtn = document.getElementById("save-btn");
+
+    const date = saveBtn.getAttribute("data-date");
+    const title = saveBtn.getAttribute("data-title");
+    const url = saveBtn.getAttribute("data-url");
+
+    try {
+        await addDoc(collection(db, "savedPosts"), {
+            uid: user.uid,
+            email: user.email,
+            date: date,
+            title: title,
+            imageUrl: url,
+            timestamp: new Date()
+        });
+
+        alert("Post saved!");
+    } catch (error) {
+        console.error("Error saving post:", error);
+        alert("Failed to save post.");
+    }
 }
 
 const modal = document.getElementById("myModal");

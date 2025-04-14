@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NASA APOD</title>
     <link rel = "stylesheet" href = "./css/can-u-see-the-stars.css">
-    <script type ="module" src=""></script>
+    <script type ="module" src="./js/can-u-see-the-stars.js"></script>
 
 </head>
 
@@ -19,7 +19,7 @@
                 <div class="navbar-left">
                     <div class="user-info">
                         <img src="./images/app-logo.png" alt="App Logo" >
-                        <p>Virendra</p>
+                        <p id="user-email">Virendra</p>
                     </div>
                 </div>
                 <p class="title">Can you see the stars?</p>
@@ -30,7 +30,7 @@
                 <div class="dropdown-content">
                     <a href="mainpage-landscape.html">This week in space &#x1F30C;</a>
                     <a href="make-ur-day-better.html">Make your day better &#x1F604;</a>
-                    <a href="post-of-the-day.html">Post of the day &#x1F31A;</a>
+                    <a href="podd-landscape.html">Post of the day &#x1F31A;</a>
                     <a href="can-u-see-the-stars.html" class="active">Can you see the stars? &#x1F52D;</a>
                     <a href="date-to-pic.html">Date for a picture &#x1F4F8;  </a>
                     <a href="profile-info.html">Profile info &#x1F464;</a>
@@ -42,18 +42,23 @@
         <div class="start-up">
         <h1>We used your location (with love &#x2661;) to check if the stars are saying hello tonight &#x2728;</h1>
 
-        <button type="button" onclick="" class="nightsky-btn">View my nightsky &#x1F303;</button>
+        <button id="nightsky-btn" type="button" onclick="checkNightSky()" class="nightsky-btn">View my nightsky &#x1F303;</button>
        
         </div>
 
         
-        <p class="nightsky-response">You will have perfect weather conditions for stargazing tonight &#x1F60A;</p>
+        <div id="result">
+
+
+        </div>
+        
+        <!-- <p class="nightsky-response">You will have perfect weather conditions for stargazing tonight &#x1F60A;</p>
     <br>
     <p class="nightsky-response">You will have good weather conditions for stargazing tonight</p>
     <br>
     <p class="nightsky-response">You will have acceptable weather conditions for stargazing tonight, you may not see the entire sky but most will be visible.</p>
     <br>
-    <p class="nightsky-response">Most of the sky will not be visible tonight due to heavy cloud cover. However, you can still enjoy the beauty of the sky through our website &#x1F601;</p>
+    <p class="nightsky-response">Most of the sky will not be visible tonight due to heavy cloud cover. However, you can still enjoy the beauty of the sky through our website &#x1F601;</p> -->
         
  
         
