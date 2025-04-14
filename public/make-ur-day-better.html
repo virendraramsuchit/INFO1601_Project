@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make your day better</title>
     <link rel="stylesheet" href="./css/make-ur-day-better.css">
+    <link rel="stylesheet" href="./css/pop-up-modal.css">
     <script type="module" src="./js/make-ur-day-better.js"></script>
 </head>
 <body>
@@ -43,7 +44,7 @@
 
     <!--async function to fetch apod, clear html and replace with post-->
     <div class="button-container">
-        <button id="make-day-btn" onclick="">
+        <button class="make-day-btn" id="first-btn" onclick="">
           <span class="button-caption">&#x1F31F; Make My Day &#x1F31F;</span>
         </button>
       </div>
@@ -58,7 +59,7 @@
                     <p>From a garden on planet Earth, 38 hours of exposure with a camera and small telescope produced this cosmic photo of the M81 galaxy group. In fact, the group's dominant galaxy M81 is near the center of the frame sporting grand spiral arms and a bright yellow core. Also known as Bode's galaxy, M81 itself spans some 100,000 light-years. Near the top is cigar-shaped irregular galaxy M82. The pair have been locked in gravitational combat for a billion years. Gravity from each galaxy has profoundly affected the other during a series of cosmic close encounters. Their last go-round lasted about 100 million years and likely raised density waves rippling around M81, resulting in massive star forming regions arrayed along M81's spiral arms. M82 was left with violent star forming regions too, and colliding gas clouds so energetic that the galaxy glows in X-rays. In the next few billion years, their continuing gravitational encounters will result in a merger, and a single galaxy will remain. Another group member, NGC 3077 is below and left of the large spiral M81. Far far away, about 12 million light-years distant the M81 group galaxies are seen toward the northern constellation Ursa Major (the Great Bear). But in the closer foreground the wide-field image is filled with integrated flux nebulae whose faint, dusty interstellar clouds reflect starlight above the plane of our own Milky Way galaxy.</p>
                     <div class="post-footer">
                         <div class="reaction-buttons">
-                            <button onclick="addComment()">&#x1F4A1; Comment</button>
+                            <button onclick="">&#x1F4A1; Comment</button>
                             <button onclick="">&#x1F516; Save</button>
                         </div>
                         <div class="reaction-buttons">
@@ -72,29 +73,24 @@
         <br>
     
         <div class="button-container">
-            <button id="make-day-btn" onclick="">
+            <button class="make-day-btn" id = "again-btn"onclick="">
               <span class="button-caption"> Again!</span>
             </button>
           </div>
 
+          <div id="myModal" class="modal">
+
+            <div class="modal-content">
+    
+              <span class="close">&times;</span>
+              <h3>Comments</h3>
+              <div id="comments-container"></div>
+    
+            </div>
+    
+          </div>
     
     
 </body>
 
-<script>
-    function addComment() {
-      const userComment = prompt("Type your comment:");
-  
-      if (userComment) {
-        // Do something with the comment, like showing it on the page
-        alert("Comment added: " + userComment);
-  
-        // Or append it somewhere
-        const commentSection = document.getElementById("comments");
-        const p = document.createElement("p");
-        p.textContent = userComment;
-        commentSection.appendChild(p);
-      }
-    }
-  </script>
 </html>

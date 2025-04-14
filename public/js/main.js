@@ -163,7 +163,7 @@ async function getCommentsForDate(date) {
     const q = query(
         collection(db, "comments"),
         where("apodDate", "==", date),
-        // orderBy("timestamp", "desc")
+        
     );
 
     try {

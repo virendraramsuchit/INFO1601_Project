@@ -1,9 +1,11 @@
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 import { firebaseConfig } from './firebaseConfig.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+import { getFirestore, collection, addDoc, query, where, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore();
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -89,11 +91,11 @@ async function showDataForMonth(){
                             <div class="post-footer">
                                 <div class="reaction-buttons">
                                     <button onclick="">&#x1F44D; Like</button>
-                                    <button onclick="">&#x1F4A1; Comment</button>
+                                    <button class="comment-btn" data-date="${rec.date}">&#x1F4A1; Comment</button>
                                     <button onclick="">&#x1F516; Save</button>
                                 </div>
                                 <div class="reaction-buttons">
-                                    <button onclick="">View Comments</button>
+                                    <button class="view-comments-btn" data-date="${rec.date}">View Comments</button>
                                 </div>
                             </div>
                         </div>
@@ -107,6 +109,46 @@ async function showDataForMonth(){
 
    results.innerHTML = html;
 
+   attachCommentListeners();
+}
+
+function attachCommentListeners() {
+    document.querySelectorAll(".comment-btn").forEach(button => {
+        button.addEventListener("click", async () => {
+            const date = button.getAttribute("data-date");
+            const user = auth.currentUser;
+
+            if (!user) {
+                alert("Please log in to comment.");
+                return;
+            }
+
+            const userComment = prompt("Type your comment:");
+            if (!userComment) return;
+
+            try {
+                await addDoc(collection(db, "comments"), {
+                    uid: user.uid,
+                    email: user.email,
+                    comment: userComment,
+                    apodDate: date,
+                    timestamp: new Date()
+                });
+                alert("Comment added!");
+            } catch (error) {
+                console.error("Error saving comment:", error);
+                alert("Failed to save comment.");
+            }
+        });
+    });
+
+    document.querySelectorAll(".view-comments-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const date = button.getAttribute("data-date");
+            document.getElementById("myModal").style.display = "block";
+            getCommentsForDate(date);
+        });
+    });
 }
 
 function goBack(){
@@ -144,6 +186,62 @@ function goBack(){
     results.innerHTML = html;
 
 }
+
+async function getCommentsForDate(date) {
+    const commentsContainer = document.getElementById("comments-container");
+    commentsContainer.innerHTML = "<p>Loading comments...</p>";
+
+    try {
+        const commentsRef = collection(db, "comments");
+        const q = query(
+            commentsRef,
+            where("apodDate", "==", date),
+            // orderBy("timestamp", "asc")
+        );
+
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            commentsContainer.innerHTML = "<p>No comments yet. Be the first to leave one!</p>";
+            return;
+        }
+
+        let html = `<h3>Comments for ${date}</h3><ul class="comment-list">`;
+
+        querySnapshot.forEach(doc => {
+            const { email, comment, timestamp } = doc.data();
+            const timeStr = new Date(timestamp.seconds * 1000).toLocaleString();
+            html += `
+                <li class="comment-item">
+                    <strong>${email}</strong> <em>(${timeStr})</em>:<br>
+                    <span>${comment}</span>
+                </li>
+            `;
+        });
+
+        html += "</ul>";
+        commentsContainer.innerHTML = html;
+
+    } catch (error) {
+        console.error("Error getting comments:", error);
+        commentsContainer.innerHTML = "<p>Failed to load comments.</p>";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("myModal");
+    const closeBtn = document.getElementsByClassName("close")[0];
+  
+    closeBtn.onclick = () => {
+      modal.style.display = "none";
+    };
+  
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
 
 window.showDataForMonth = showDataForMonth;
 window.goBack = goBack;

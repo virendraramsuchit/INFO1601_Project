@@ -191,7 +191,7 @@ body {
 
   }
   
-#make-day-btn {
+.make-day-btn {
     background-color: #1f8ef1;
     color: white;
     border: none;
@@ -203,7 +203,7 @@ body {
     transition: transform 0.2s, background-color 0.3s;
   }
   
-  #make-day-btn:hover {
+  .make-day-btn:hover {
     background-color: #0f72d4;
     transform: scale(1.05);
   }
