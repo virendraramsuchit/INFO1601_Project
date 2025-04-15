@@ -133,9 +133,30 @@ function renderPosts() {
     const postsToShow = data_arr.slice(start, end);
 
     for (let rec of postsToShow) {
+
+        let mediaElement = '';
+
+        if (rec.media_type === 'image') {
+            const imageUrl = rec.hdurl || rec.url;
+            mediaElement = `<img class="post-image" src="${imageUrl}" alt="Post Image">`;
+        } else if (rec.media_type === 'video') {
+            const thumbnail = rec.thumbnail_url || '';
+            mediaElement = `
+                <div class="video-container">
+                    <a href="${rec.url}" target="_blank" rel="noopener noreferrer">
+                        <img class="post-image" src="${thumbnail}" alt="Video Thumbnail">
+                        <div class="play-button">&#9658;</div>
+                    </a>
+                </div>
+            `;
+        } else {
+            mediaElement = `<p>Unsupported media type: ${rec.media_type}</p>`;
+        }
+
+        // <img class="post-image" src="${rec.hdurl}" alt="Post Image"></img>
         html += `
             <div class="post-content">
-                <img class="post-image" src="${rec.hdurl}" alt="Post Image">
+                ${mediaElement}
                 <div class="post-body">
                     <h1>${rec.title}</h1>
                     <p class="date">${rec.date}</p>

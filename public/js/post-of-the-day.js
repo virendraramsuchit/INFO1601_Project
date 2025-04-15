@@ -49,10 +49,31 @@ function makeCard(info){
 
     let html = '';
 
+    let mediaElement = '';
+
+        if (info.media_type === 'image') {
+            const imageUrl = info.hdurl || info.url;
+            mediaElement = `<img class="post-image" src="${imageUrl}" alt="Post Image">`;
+        } else if (info.media_type === 'video') {
+            const thumbnail = info.thumbnail_url || '';
+            mediaElement = `
+                <div class="video-container">
+                    <a href="${info.url}" target="_blank" rel="noopener noreferrer">
+                        <img class="post-image" src="${thumbnail}" alt="Video Thumbnail">
+                        <div class="play-button">&#9658;</div>
+                    </a>
+                </div>
+            `;
+        } else {
+            mediaElement = `<p>Unsupported media type: ${info.media_type}</p>`;
+        }
+
+        // <img class="post-image" src="${info.hdurl}" alt="Post Image"></img>
+
     html += `
     
         <div class="post-content">
-                <img class="post-image" src="${info.hdurl}" alt="Post Image">
+                ${mediaElement}
                 <div class="post-body">
                     <h1>${info.title}</h1>
                     <p class="date" >${info.date}</p>

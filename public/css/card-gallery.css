@@ -18,7 +18,7 @@ body {
 }
 
 
-.card:hover {
+.saved-post:hover {
     background-color: #e4e4e4; 
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); 
   transform: translateY(-7px); 
@@ -26,7 +26,7 @@ body {
 
 }
 
-.card {
+.saved-post {
     width: 300px;
     height: 300px;
     background-color: lightgray;
@@ -41,7 +41,7 @@ body {
 
 }
 
-.card img {
+.saved-post img {
     width: 90%;
     height: 200px;
     margin-top: 10px;

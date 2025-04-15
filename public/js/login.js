@@ -1,9 +1,10 @@
-import { getAuth, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { firebaseConfig } from './firebaseConfig.js';
+import { signInWithEmailAndPassword, } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+// import { firebaseConfig } from './firebaseConfig.js';
+import { auth } from './firebaseIn.js';
 
-  const app = initializeApp(firebaseConfig); 
-  const auth = getAuth(app); 
+  // const app = initializeApp(firebaseConfig); 
+  // const auth = getAuth(app); 
 
   const login = document.getElementById('login');
   login.addEventListener("click", function(event){

@@ -33,7 +33,7 @@ async function displaySavedPosts() {
       return;
     }
   
-    const savedPostsContainer = document.getElementById("saved-posts-container");
+    const savedPostsContainer = document.getElementById("change");
     savedPostsContainer.innerHTML = "<p>Loading saved posts...</p>";
   
     try {
@@ -58,16 +58,21 @@ async function displaySavedPosts() {
   
       const uniquePosts = Array.from(uniquePostsMap.values());
   
-      let html = "<h2>Your Saved Posts</h2>";
+      let html = "";
   
       uniquePosts.forEach(post => {
         html += `
-          <div class="saved-post">
-            <img src="${post.imageurl}" alt="Saved Image" style="max-width: 100%; height: auto;">
-            <h3>${post.title}</h3>
-            <p><strong>Date:</strong> ${post.date}</p>
-            <hr>
-          </div>
+
+        <div class="saved-post">
+
+                  <img src="${post.imageurl}" alt="Saved Image">
+                  <h3 class="title">${post.title}</h3>
+                  <p><strong>Date:</strong> ${post.date}</p>
+                  <hr>
+
+            </div>
+
+
         `;
       });
   
@@ -80,3 +85,21 @@ async function displaySavedPosts() {
   }
 
   window.displaySavedPosts = displaySavedPosts;
+
+//   <div class="card">
+//   <div>
+//       <img src="https://cdn.mos.cms.futurecdn.net/iYCZhWZYemDpfnVVQxQ9rE.jpg" alt="Character image"></img>
+//   </div>
+
+//   <p><b>Nasa Science Photo</b></p>
+//   <br>
+//   <p class="date">Date:YYYY-MM-DD</p>
+
+// </div>
+
+//  <div class="saved-post">
+//             <img src="${post.imageurl}" alt="Saved Image" style="max-width: 100%; height: auto;">
+//             <h3>${post.title}</h3>
+//             <p><strong>Date:</strong> ${post.date}</p>
+//             <hr>
+//           </div> 

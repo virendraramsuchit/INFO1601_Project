@@ -88,6 +88,8 @@ async function getLocation(){
 async function useLocationandTime(time){
 
     const pos = await getLocation();
+    console.log(pos.coords.longitude);
+    console.log(pos.coords.latitude);
     let key;
         
     if(isBetween10PMand3AM(time)){

@@ -62,7 +62,7 @@ function makeCard(info){
   let result = document.querySelector('.content');
 
    random_date = info.date;
-
+   console.log(random_date);
   let html = '';
 
   html += `

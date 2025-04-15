@@ -15,16 +15,47 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     // Display user email
+//     document.getElementById("user-email").textContent = user.email;
+//     // Store UID for saves/comments
+//     window.currentUser = user;
+//   } else {
+//     // If not logged in, redirect to login
+//     window.location.href = "index.html";
+//   }
+// });
+
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // Display user email
-    document.getElementById("user-email").textContent = user.email;
-    // Store UID for saves/comments
-    window.currentUser = user;
-  } else {
-    // If not logged in, redirect to login
-    window.location.href = "index.html";
-  }
+    // const loadingElement = document.getElementById('loading');
+    // loadingElement.style.display = 'block';  // Show loading indicator
+
+    if (!user) {
+        // Only redirect if not already on the login page
+        if (!window.location.pathname.endsWith("index.html")) {
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 100);
+        }
+    }
+
+    if (user) {
+        // Set user info after authentication is confirmed
+        document.getElementById("user-email").textContent = user.email;
+        window.currentUser = user;
+
+        // Only load content after auth state is ready
+        getThisWeekInSpace().then((data) => {
+            makePost(data);
+            // loadingElement.style.display = 'none';  // Hide loading once posts are ready
+        });
+    } else {
+        // Redirect user if not authenticated (with a slight delay to prevent immediate flicker)
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 100);
+    }
 });
 
 import { API_KEY } from './apikey.js';
@@ -53,11 +84,30 @@ function makePost(info) {
     let html = '';
 
     for (let rec of info) {
-        
+
+        let mediaElement = '';
+
+        if (rec.media_type === 'image') {
+            const imageUrl = rec.hdurl || rec.url;
+            mediaElement = `<img class="post-image" src="${imageUrl}" alt="Post Image">`;
+        } else if (rec.media_type === 'video') {
+            const thumbnail = rec.thumbnail_url || '';
+            mediaElement = `
+                <div class="video-container">
+                    <a href="${rec.url}" target="_blank" rel="noopener noreferrer">
+                        <img class="post-image" src="${thumbnail}" alt="Video Thumbnail">
+                        <div class="play-button">&#9658;</div>
+                    </a>
+                </div>
+            `;
+        } else {
+            mediaElement = `<p>Unsupported media type: ${rec.media_type}</p>`;
+        }
+
         html += `
         <div class="content">
             <div class="post-content">
-                <img class="post-image" src="${rec.hdurl}" alt="Post Image">
+                ${mediaElement}
                 <div class="post-body">
                     <h1>${rec.title}</h1>
                     <p>${rec.explanation}</p>
@@ -194,11 +244,6 @@ function savePostListeners() {
         });
     });
 }
-
-document.addEventListener("DOMContentLoaded", async () => {
-    let data = await getThisWeekInSpace();
-    makePost(data);
-  });
 
 
   const modal = document.getElementById("myModal");
