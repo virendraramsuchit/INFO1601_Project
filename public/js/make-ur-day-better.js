@@ -75,7 +75,6 @@ function makeCard(info){
                   <p>${info.explanation}</p>
                   <div class="post-footer">
                       <div class="reaction-buttons">
-                          <button onclick="">&#x1F44D; Like</button>
                           <button id ="comment-btn">&#x1F4A1; Comment</button>
                           <button id="save-btn">&#x1F516; Save</button>
                       </div>

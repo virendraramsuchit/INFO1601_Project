@@ -113,7 +113,6 @@ function makePost(info) {
                     <p>${rec.explanation}</p>
                     <div class="post-footer">
                         <div class="reaction-buttons">
-                            <button class="like-btn">&#x1F44D; Like</button>
                             <button class="comment-btn" data-date="${rec.date}" data-title="${rec.title}">&#x1F4A1; Comment</button>
                             <button class="save-btn">&#x1F516; Save</button>
                         </div>

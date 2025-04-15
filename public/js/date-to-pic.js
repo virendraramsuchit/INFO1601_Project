@@ -163,7 +163,6 @@ function renderPosts() {
                     <p>${rec.explanation}</p>
                     <div class="post-footer">
                         <div class="reaction-buttons">
-                            <button onclick="">&#x1F44D; Like</button>
                             <button class="comment-btn" data-date="${rec.date}">&#x1F4A1; Comment</button>
                             <button class="save-btn">&#x1F516; Save</button>
                         </div>

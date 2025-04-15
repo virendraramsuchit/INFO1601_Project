@@ -80,7 +80,6 @@ function makeCard(info){
                     <p>${info.explanation}</p>
                     <div class="post-footer">
                         <div class="reaction-buttons">
-                            <button onclick="">&#x1F44D; Like</button>
                             <button id ="comment-btn">&#x1F4A1; Comment</button>
                             <button id="save-btn" data-date="${info.date}" data-title="${info.title}" data-url="${info.hdurl}">&#x1F516; Save</button>
                         </div>
@@ -152,7 +151,7 @@ async function savePost() {
             email: user.email,
             date: date,
             title: title,
-            imageUrl: url,
+            imageurl: url,
             timestamp: new Date()
         });
 
