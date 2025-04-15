@@ -184,3 +184,20 @@
 .container.active .toggle-right {
     transform: translateX(200%);
 }
+
+
+aside {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    top: 0;
+    left: 0;
+    position: fixed;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+aside img {
+    height: 85px;
+    width: 85px;
+}
