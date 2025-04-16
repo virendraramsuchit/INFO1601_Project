@@ -34,3 +34,10 @@ const spaceFacts = [
   const factElement = document.getElementById("spaceFact");
   factElement.textContent = "🌌 " + randomFact;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.querySelector(".action-btn");
+  if (button) {
+    button.addEventListener("click", displayRandomSpaceFact);
+  }
+});

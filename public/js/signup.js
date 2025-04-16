@@ -1,11 +1,5 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-// import { firebaseConfig } from './firebaseConfig.js';
+import { createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
 import { auth } from './firebaseIn.js';
-
-// const app = initializeApp(firebaseConfig); 
-  // const auth = getAuth(app); 
-
 
   const signup = document.getElementById('signup');
   signup.addEventListener("click", function(event){
@@ -23,6 +17,7 @@ import { auth } from './firebaseIn.js';
         alert("Account Created... Please login with same credentials");
 
     })
+
     .catch((error) => {
         const errorCode = error.code;
 
