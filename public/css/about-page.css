@@ -279,3 +279,16 @@
     margin-right: 10px;
     vertical-align: middle;
   }
+
+
+  .navbar {
+    text-transform: uppercase;
+  }
+  
+  .dropbtn {
+    text-transform: capitalize;
+  }
+  
+  .dropdown-content {
+    text-transform: capitalize;
+  }
