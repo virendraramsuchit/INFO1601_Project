@@ -29,8 +29,8 @@ async function getDataByMonth(){
 
     data_arr = [];
 
-    const year = document.getElementById('year-input').value;
-    const month = document.getElementById('month-input').value;
+    const year = Number(document.getElementById("year-input").value);
+    const month = Number(document.getElementById('month-input').value);
 
     const paddedMonth1 = month.toString().padStart(2, '0');
     const startDate = `${year}-${paddedMonth1}-01`;
@@ -82,47 +82,6 @@ async function showDataForMonth(){
 
 }
 
-// async function showDataForMonth(){
-
-//    await getDataByMonth();
-
-//    let results = document.querySelector("#results");
-
-//    let html = '';
-
-//    for(let rec of data_arr){
-//         html += `
-            
-//             <div class="post-content">
-//                         <img class="post-image" src="${rec.hdurl}" alt="Post Image">
-//                         <div class="post-body">
-//                             <h1>${rec.title}</h1>
-//                             <p class="date" >${rec.date}</p>
-//                             <p>${rec.explanation}</p>
-//                             <div class="post-footer">
-//                                 <div class="reaction-buttons">
-//                                     <button onclick="">&#x1F44D; Like</button>
-//                                     <button class="comment-btn" data-date="${rec.date}">&#x1F4A1; Comment</button>
-//                                     <button class="save-btn">&#x1F516; Save</button>
-//                                 </div>
-//                                 <div class="reaction-buttons">
-//                                     <button class="view-comments-btn" data-date="${rec.date}">View Comments</button>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                 </div>
-
-//             <br>
-
-//             <button type="button" class="content-btn" onclick="goBack()"> Back &#x2728;</button>
-//         `;
-//    }
-
-//    results.innerHTML = html;
-
-//    attachCommentListeners();
-//    savePostListeners();
-// }
 
 function renderPosts() {
     const results = document.querySelector("#results");
