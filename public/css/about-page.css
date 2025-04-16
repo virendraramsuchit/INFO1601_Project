@@ -139,6 +139,7 @@
     border-radius: 22%;
     object-fit: contain;
     margin: 0 auto 15px;
+    margin-top: 10px;
     display: block;
     background: white;
     padding: 8px;
@@ -292,3 +293,42 @@
   .dropdown-content {
     text-transform: capitalize;
   }
+
+  .user-info img {
+    height: 60px;
+    width: 60px;
+  }
+  
+  .dropbtn {
+    background-color: #000000;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+  }
+  
+  .action-btn {
+    display: block;
+    width: 15%;
+    padding: 0.8rem;
+    margin: 0.75rem 0;
+    background-color: DodgerBlue;
+    border: none;
+    border-radius: 10px;
+    color: #fdfdfd;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+}
+
+.action-btn:hover {
+  color: #000000;
+    background-color: #00BFFF;
+    box-shadow: 0 0 10px #00BFFF, 0 0 25px #00BFFF;
+    transform: scale(1.05);
+}  
