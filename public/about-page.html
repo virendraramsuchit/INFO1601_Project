@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About This App</title>
   <link rel="stylesheet" href="./css/about-page.css" />
+  <script type="module" src="randomFact.js"></script>
 
 
 </head>
@@ -50,6 +51,26 @@
     <p>
         Since our launch in 2023, we've helped over 50,000 users discover the wonders of the night sky.
     </p>
+    <h3>7Timer!</h3>
+    <p>
+      7Timer! is a series of web-based meteorological forecast products, 
+      mainly derived from the NOAA/NCEP-based numeric weather model,
+       the Global Forecast System (GFS). 7Timer! was firstly established 
+       in July 2005 as an exploration product under support of the 
+       National Astronomical Observatories of China and has been largely 
+       renovated in 2008 and 2011. Currently it is supported by the Shanghai 
+       Astronomical Observatory 
+      of Chinese Academy of Sciences.
+    </p>
+    <p>
+      7Timer! produces high-resolution forecasts for the entire globe 
+      that cover about 1.5 million geographic points, and would be 
+      updated four times a day. It also produces specialized products 
+      for users with different concentrations such as 
+      astronomy or meteorology.
+    </p>
+
+
   </section>
   
   <section>
@@ -78,15 +99,34 @@
             Background stories about cosmic phenomena.</p>
       </div>
     </div>
+    <div class="feature">
+      <div class="feature-icon">&#x1F312;</div>
+      <div>
+        <h3>Can you see the stars?</h3>
+        <p>With just your location (we ask nicely), we check the skies for you—cloud cover, visibility, and all—so 
+          you’ll know if tonight’s a starry show or a no-go.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#x1F3A5;</div>
+      <div>
+        <h3>Date for a picture</h3>
+        <p>Explore the universe’s monthly photo dump. 
+          <br>Scroll through a galaxy of APODs from any month—served in a sleek, scroll-worthy layout that’s 
+          pure social media gold.</p>
+      </div>
+    </div>
+
+
   </section>
   
   <section>
     <div class="space-fact">
       <h3><span class="fact-icon">🌌</span>Did You Know?</h3>
       <p id="spaceFact">Loading interesting space fact...</p>
+      <button type="button" class="action-btn" onclick="displayRandomSpaceFact()">Generate</button>
     </div>
   </section>
-  <script src="randomFact.js"></script>
 
   <footer>
     <p>&copy; 2023 NASA APOD. All rights reserved.</p>
